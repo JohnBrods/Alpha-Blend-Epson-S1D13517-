@@ -848,65 +848,6 @@ void Set_Display_Letters_S1D13517(uint16_t x_position, uint16_t y_position){
 }
 
 //==============================================================
-/*void Write_Character(uint16_t Letter_Font_Length_Bytes_Start, uint16_t Letter_Font_Length_Bytes_End, uint16_t x_position, uint16_t y_position, uint16_t colour){
-     uint8_t x=0;
-     uint8_t dataout = 0;
-     uint16_t i=1;
-     uint16_t jj=0;
-     set_Pixel_Colour(colour);
-     Set_Display_Letters_S1D13517(x_position,y_position);
-     Epson_CS = 0;
-     for(jj=Letter_Font_Length_Bytes_Start; jj<Letter_Font_Length_Bytes_End; jj++){
-      for(x=0; x<8; x++){
-          dataout = Letter_Font[jj] &i;
-        if(dataout){
-          Write_Data_EpsonS1D13517(Pixel);
-         }else  {Write_Data_EpsonS1D13517(background_Colour);  }
-          i=i<<1;
-        if(i>128){
-             i=1;}
-       }
-     }
-     Epson_CS = 1;
-}*/
-
-/*void Write_Character_Dot(uint16_t x_position, uint16_t y_position, uint16_t colour){
-     uint8_t x=0;
-     uint8_t dataout = 0;
-     uint16_t i=1;
-     uint16_t jj=0;
-     set_Pixel_Colour(colour);
-     Set_Display_Letters_S1D13517(x_position,y_position);
-     Epson_CS = 0;
-     for(jj=Letter_Font_Length_Bytes*36; jj<Letter_Font_Length_Bytes*37; jj++){
-      for(x=0; x<8; x++){
-          dataout = Letter_Font[jj] &i;
-        if(dataout){
-           Write_Data_EpsonS1D13517(Pixel);
-         }else  {Write_Data_EpsonS1D13517(background_Colour);}
-          i=i<<1;
-        if (i>128){
-              i=1;}
-       }
-     }
-     Epson_CS = 1;
-}*/
-
-
-/*void Write_Character_Space(uint16_t x_position, uint16_t y_position, uint16_t colour){
-     uint8_t x=0;
-     uint8_t dataout = 0;
-     uint16_t jj=0;
-     set_Pixel_Colour(colour);
-     Set_Display_Letters_S1D13517(x_position,y_position);
-     Epson_CS = 0;
-     for(jj=0; jj<Letter_Font_Length_Bytes*10; jj++){    //Space
-       Write_Data_EpsonS1D13517(background_Colour);
-      }
-      Epson_CS = 1;
-}*/
-
-//==============================================================
 
 void write_Character(const uint8_t* glyphPtr,  uint16_t x_position, uint16_t y_position, uint16_t colour){
 
@@ -931,7 +872,6 @@ void write_Character(const uint8_t* glyphPtr,  uint16_t x_position, uint16_t y_p
     Epson_CS = 1;
 }
 
-//==============================================================
 //==============================================================
 
                                            // DEFINITIONS FOR MMC/SD CARD COMMANDS
@@ -971,18 +911,12 @@ uint16_t  Start_Sector_for_FAT1;              //Also known as Reserved_Sectors; 
 uint16_t  Sectors_Per_FAT;
 uint16_t  reservedSectors;
 uint32_t  sector;
-uint32_t  sectorb0;
-uint32_t  sectorb1;
-uint16_t  sectorb2;
-uint8_t   sectorb3;
 uint32_t  Cluster_Size;
 uint8_t   bootSectorBuffer[512];
 uint8_t   dataBuffer[512]; //SECTOR BUFFER
 uint16_t  colour = white;
 
 //==============================================================
-
-//====================================================
 
 void Read_Sector(uint32_t address, uint8_t *buffer){
 
@@ -1150,8 +1084,6 @@ void Get_Boot_Information(){
 
 //==============================================================
 
-//==============================================================
-
 void Set_Bus_Speeds(){
 
       /* unlock system for clock configuration */
@@ -1189,7 +1121,6 @@ void InitialiseFastSPI(uint8_t Speed){
 }
 
 //==============================================================
-
 
 void Write_HexByte(uint8_t b, uint16_t x, uint16_t y, uint16_t colour){
 
@@ -1761,7 +1692,6 @@ void Get_Files(){ // now counting to five
 
 //==============================================================
 
-
 void Get_FilesBACKUPCOPY(){ // now counting to five
 
     uint8_t  x = 0;
@@ -2102,8 +2032,6 @@ void Write_PictureBACKUPCOPY(uint32_t Actual_Sector, uint8_t sdram_Location_Numb
 }
 
 //==============================================================
-
-
 
 uint8_t Ready = 0;
 void Interrupt() iv IVT_EXTERNAL_1 ilevel 7 ics ICS_SRS {    // AN25/RPE8/RE8   Interrupts PAGE 116      INTCON: INTERRUPT CONTROL REGISTER page 141
